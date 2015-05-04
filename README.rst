@@ -31,7 +31,7 @@ setup.py install``.
 
 Dependencies
 ============
-- pymongo_ 1.9+
+- pymongo_ 3.0.1+
 - `sphinx <http://sphinx.pocoo.org>`_ (optional -- for documentation generation)
 
 
@@ -49,6 +49,22 @@ a field, and then saving it back again::
             # A connection to your DB is automatically created.
             database = "minimongo"
             collection = "rocks"
+
+            # Now, we programatically declare what indices we want.
+            # The arguments to the Index constructor are identical to
+            # the args to pymongo"s ensure_index function.
+            indices = (
+                Index("a"),
+            )
+
+    class FooRS(Model):
+        class Meta:
+            # Here, we specify the database ,collection names and replicaset name.
+            # A connection to your DB is automatically created.
+            database = "minimongo"
+            collection = "rocks"
+            replicaset = "rs0"
+
 
             # Now, we programatically declare what indices we want.
             # The arguments to the Index constructor are identical to

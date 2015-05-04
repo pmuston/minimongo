@@ -43,20 +43,20 @@ class PyTest(Command):
 requires = ["pymongo"]
 
 setup(name="minimongo",
-      version="0.2.6",
+      version="0.3.0",
       packages=find_packages(),
       cmdclass={"test": PyTest},
       platforms=["any"],
 
-      install_requires = ["pymongo>=1.9"],
+      install_requires=["pymongo>=3.0.1"],
       zip_safe=False,
       include_package_data=True,
 
-      author="Steve Lacy",
-      author_email="slacy@slacy.com",
+      author="Steve Lacy,Zhao Chunyou",
+      author_email="slacy@slacy.com,zhaochunyou@gmail.com",
       description=DESCRIPTION,
       long_description=LONG_DESCRIPTION,
       classifiers=CLASSIFIERS,
       keywords=["mongo", "mongodb", "pymongo", "orm"],
-      url="http://github.com/slacy/minimongo",
+      url="http://github.com/snowtigersoft/minimongo",
 )

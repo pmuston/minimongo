@@ -69,6 +69,9 @@ class _Options(object):
     # properly in the subclasses.)
     interface = False
 
+    # replicaset name
+    replicaset = None
+
     def __init__(self, meta):
         if meta is not None:
             self.__dict__.update(meta.__dict__)

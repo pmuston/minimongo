@@ -10,7 +10,8 @@ from minimongo import Collection, Index, Model
 from pymongo.errors import DuplicateKeyError
 
 HOST = "127.0.0.1"
-PORT = 27017
+PORT = 27019
+REPLICA_SET = "rs0"
 
 
 class TestCollection(Collection):
@@ -23,6 +24,7 @@ class TestModel(Model):
     class Meta:
         host = HOST
         port = PORT
+        replicaset = REPLICA_SET
         database = 'minimongo_test'
         collection = 'minimongo_test'
         indices = (
@@ -40,6 +42,7 @@ class TestModelCollection(Model):
     class Meta:
         host = HOST
         port = PORT
+        replicaset = REPLICA_SET
         database = 'minimongo_test'
         collection = 'minimongo_collection'
         collection_class = TestCollection
@@ -49,6 +52,7 @@ class TestModelUnique(Model):
     class Meta:
         host = HOST
         port = PORT
+        replicaset = REPLICA_SET
         database = 'minimongo_test'
         collection = 'minimongo_unique'
         indices = (
@@ -60,6 +64,7 @@ class TestDerivedModel(TestModel):
     class Meta:
         host = HOST
         port = PORT
+        replicaset = REPLICA_SET
         database = 'minimongo_test'
         collection = 'minimongo_derived'
 
@@ -68,6 +73,7 @@ class TestNoAutoIndexModel(Model):
     class Meta:
         host = HOST
         port = PORT
+        replicaset = REPLICA_SET
         database = 'minimongo_test'
         collection = 'minimongo_noidex'
         indices = (
@@ -85,6 +91,7 @@ class TestModelImplementation(TestModelInterface):
     class Meta:
         host = HOST
         port = PORT
+        replicaset = REPLICA_SET
         database = 'minimongo_test'
         collection = 'minimongo_impl'
 
@@ -93,6 +100,7 @@ class TestFieldMapper(Model):
     class Meta:
         host = HOST
         port = PORT
+        replicaset = REPLICA_SET
         database = 'minimongo_test'
         collection = 'minimongo_mapper'
         field_map = (

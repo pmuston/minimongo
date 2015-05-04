@@ -5,7 +5,7 @@ import re
 from bson import DBRef, ObjectId
 from minimongo.collection import DummyCollection
 from minimongo.options import _Options
-from pymongo import Connection
+from pymongo import MongoClient
 
 
 class ModelBase(type):
@@ -58,7 +58,7 @@ class ModelBase(type):
             # creates :class:`pymongo.connection.Connection` object without
             # establishing connection. It's required if there is no running
             # mongodb at this time but we want to create :class:`Model`.
-            connection = Connection(*hostport, _connect=False)
+            connection = MongoClient(*hostport, replicaset=options.replicaset)
             mcs._connections[hostport] = connection
 
         new_class._meta = options
@@ -227,8 +227,7 @@ class Model(AttrDict):
         self.collection.find_one( self._id, fields={'name': 1} )
 
         """
-        values = self.collection.find_one({'_id': self._id},
-                                          fields=fields, **kwargs)
+        values = self.collection.find_one(self._id, projection=fields, **kwargs)
         # Merge the loaded values with whatever is currently in self.
         self.update(values)
         return self
